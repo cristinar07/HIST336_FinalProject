@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Latinos in Motion: Mapping Migration to Atlanta</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://unpkg.com/topojson-client@3"></script>
+</head>
+<body>
+
+  <!-- TITLE / INTRO -->
+  <section class="full-slide intro" id="verse0">
+    <div class="intro-content">
+      <h1 class="main-title">Latinos in Motion: Mapping Migration to Atlanta</h1>
+      <p class="subtitle">An Interactive Visualization by Cristina Ramirez Vinaja</p>
+      <p style="margin-top: 1rem; font-size: 14px; color: #8c8c8c;">
+        Dataset from the 
+        <a href="https://missingmigrants.iom.int/data" target="_blank" style="color: #aa7074; text-decoration: underline;">
+          Missing Migrants Project
+        </a>
+      </p>
+      <div class="scroll-indicator">↓</div>
+    </div>
+  </section>
+
+  <!-- MAIN SCROLL CONTENT -->
+  <main class="scrollytelling-container">
+
+    <!-- Verse 1 -->
+    <section class="full-slide content-slide" id="verse1">
+      <div class="poem-box">
+        <p>Slide 1 Placeholder</p>
+      </div>
+      <div class="visual-box">
+        <svg id="vis1" width="960" height="600"></svg>
+      </div>
+    </section>
+
+    <!-- Verse 2 -->
+    <section class="full-slide content-slide" id="verse2">
+      <div class="poem-box">
+        <p>Slide 2 Placeholder</p>
+      </div>
+      <div class="visual-box">
+        <svg id="vis2" width="960" height="600"></svg>
+      </div>
+    </section>
+
+    <!-- Verse 3 -->
+    <section class="full-slide content-slide" id="verse3">
+      <div class="poem-box">
+        <p>Slide 3 Placeholder</p>
+      </div>
+      <div class="visual-box">
+        <svg id="vis3" width="960" height="600"></svg>
+      </div>
+    </section>
+
+    <!-- Verse 4 -->
+    <section class="full-slide transition-slide" id="verse4">
+      <div class="poem-box transition">
+        <p>Slide 4 Placeholder (Transition)</p>
+      </div>
+    </section>
+
+    <!-- Verse 5 -->
+    <section class="full-slide content-slide" id="verse5">
+      <div class="poem-box">
+        <p>Slide 5 Placeholder</p>
+      </div>
+      <div class="visual-box">
+        <svg id="vis5" width="960" height="600"></svg>
+      </div>
+    </section>
+
+    <!-- Verse 6 -->
+    <section class="full-slide content-slide" id="verse6">
+      <div class="poem-box">
+        <p>Slide 6 Placeholder</p>
+      </div>
+      <div class="visual-box">
+        <svg id="vis6" width="960" height="600"></svg>
+      </div>
+    </section>
+
+    <!-- Verse 7 -->
+    <section class="full-slide content-slide" id="verse7">
+      <div class="poem-box">
+        <p>Slide 7 Placeholder</p>
+      </div>
+      <div class="visual-box">
+        <svg id="vis7" width="960" height="600"></svg>
+      </div>
+    </section>
+
+    <!-- Verse 8 -->
+    <section class="full-slide transition-slide" id="verse8">
+      <div class="poem-box transition">
+        <p>Slide 8 Placeholder (Transition)</p>
+      </div>
+    </section>
+
+    <!-- Verse 9 -->
+    <section class="full-slide content-slide" id="verse9">
+      <div class="poem-box">
+        <p>Slide 9 Placeholder</p>
+      </div>
+      <div class="visual-box">
+        <svg id="vis9" width="960" height="600"></svg>
+      </div>
+    </section>
+
+    <!-- Verse 10 -->
+    <section class="full-slide content-slide" id="verse10">
+      <div class="poem-box">
+        <p>Slide 10 Placeholder</p>
+      </div>
+      <div class="visual-box">
+        <svg id="vis10" width="960" height="600"></svg>
+      </div>
+    </section>
+
+    <!-- Verse 11 -->
+    <section class="full-slide content-slide" id="verse11">
+      <div class="poem-box">
+        <p>Slide 11 Placeholder</p>
+      </div>
+      <div class="visual-box">
+        <svg id="vis11" width="960" height="600"></svg>
+      </div>
+    </section>
+
+    <!-- Verse 12 -->
+    <section class="full-slide transition-slide" id="verse12">
+      <div class="poem-box transition">
+        <p>Slide 12 Placeholder (Transition)</p>
+      </div>
+    </section>
+
+  </main>
+
+  <nav class="progress-timeline">
+    <div class="timeline-container">
+      <div class="timeline-node" data-slide="1">★</div>
+      <div class="timeline-node" data-slide="2">1</div>
+      <div class="timeline-node" data-slide="3">2</div>
+      <div class="timeline-node" data-slide="4">3</div>
+      <div class="timeline-node" data-slide="5">4</div>
+      <div class="timeline-node" data-slide="6">5</div>
+      <div class="timeline-node" data-slide="7">6</div>
+      <div class="timeline-node" data-slide="8">7</div>
+      <div class="timeline-node" data-slide="9">8</div>
+      <div class="timeline-node" data-slide="10">9</div>
+      <div class="timeline-node" data-slide="11">10</div>
+      <div class="timeline-node" data-slide="12">11</div>
+      <div class="timeline-node" data-slide="13">12</div>
+    </div>
+  </nav>
+
+  <script src="main.js"></script>
+</body>
+</html>
