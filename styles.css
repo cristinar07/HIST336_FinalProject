@@ -121,7 +121,7 @@
     background-color: #fff2f2;
     padding: 2rem;
     max-width: 700px;
-    font-weight: bold;
+    
     font-size: 1.4rem;
     text-align: center;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -168,3 +168,150 @@
     color: #ff6347; /* Optional: Color the bolded word */
   }
   
+  /* .photo-gallery {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 150px 200px 150px 200px;
+    grid-template-areas:
+      "a a b c c"
+      "a a d e f"
+      "g h d i f"
+      "g h j i k";
+    gap: 10px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .photo-gallery figure {
+    margin: 0;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  .photo-gallery img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  .item1  { grid-area: a; }
+  .item2  { grid-area: b; }
+  .item3  { grid-area: c; }
+  .item4  { grid-area: d; }
+  .item5  { grid-area: e; }
+  .item6  { grid-area: f; }
+  .item7  { grid-area: g; }
+  .item8  { grid-area: h; }
+  .item9  { grid-area: i; }
+  .item10 { grid-area: j; }
+  .item11 { grid-area: k; }
+  
+  .caption-box {
+    margin: 1rem auto;
+    max-width: 900px;
+    text-align: center;
+    font-size: 0.95rem;
+    color: #333;
+    min-height: 1.2em;
+  }
+   */
+
+  /* Lightbox Modal Styles */
+.modal {
+  display: none;               /* hidden by default */
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.8);
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-img {
+  max-width: 90%;
+  max-height: 80%;
+  margin: auto;
+  display: block;
+}
+
+.modal-caption {
+  margin: 1rem auto;
+  text-align: center;
+  color: #eee;
+  font-size: 1rem;
+  max-width: 90%;
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px; right: 30px;
+  color: #fff;
+  font-size: 2.5rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.photo-essay-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* Left column (gallery) */
+.photo-gallery {
+  flex: 4;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 150px 200px 150px 200px;
+  grid-template-areas:
+    "a a b c c"
+    "a a d e f"
+    "g h d i f"
+    "g h j i k";
+  gap: 10px;
+}
+
+.photo-gallery figure { cursor: pointer; overflow: hidden; margin: 0; }
+.photo-gallery img    { width:100%; height:100%; object-fit:cover; }
+
+/* map your items a–k to item1…item11 as before */
+.item1  { grid-area: a; }
+.item2  { grid-area: b; }
+.item3  { grid-area: c; }
+.item4  { grid-area: d; }
+.item5  { grid-area: e; }
+.item6  { grid-area: f; }
+.item7  { grid-area: g; }
+.item8  { grid-area: h; }
+.item9  { grid-area: i; }
+.item10 { grid-area: j; }
+.item11 { grid-area: k; }
+
+
+/* Right column (static caption) */
+.caption-box {
+  flex: 1;
+  max-width: 300px;
+  position: sticky;   /* stays in view if the slide scrolls */
+  top: 2rem;
+  text-align: left;
+}
+.caption-title {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+.caption-text {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+.caption-instruction {
+  font-size: 0.9rem;
+  color: #666;
+  font-style: italic;
+}

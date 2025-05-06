@@ -34,22 +34,6 @@ let keyframes = [
     {
       activeVerse: 8,
       activeLines: [1, 2, 3, 4],
-    },
-    {
-      activeVerse: 9,
-      activeLines: [1, 2, 3, 4],
-    },
-    {
-      activeVerse: 10,
-      activeLines: [1, 2, 3, 4],
-    },
-    {
-      activeVerse: 11,
-      activeLines: [1, 2, 3, 4, 5],
-    },
-    {
-      activeVerse: 12,
-      activeLines: [1, 2, 3, 4, 5, 6],
     }
   ];
   
@@ -116,7 +100,42 @@ let keyframes = [
   }, observerOptions);
   
   verseSections.forEach(section => observer.observe(section));
-  
+
+// Photo‐essay click → caption + lightbox
+const captionBox = document.getElementById('photo-caption');
+const modal      = document.getElementById('photo-modal');
+const modalImg   = document.getElementById('modal-img');
+const modalCap   = document.getElementById('modal-caption');
+const modalClose = document.querySelector('.modal-close');
+
+document.querySelectorAll('.photo-gallery figure').forEach(fig => {
+  fig.addEventListener('click', () => {
+    const imgEl    = fig.querySelector('img');
+    const src      = imgEl.src;
+    const caption  = fig.dataset.caption;
+
+    // update thumbnail caption
+    // captionBox.textContent = caption;
+
+    // open lightbox
+    modal.style.display = 'flex';
+    modalImg.src        = src;
+    modalCap.textContent = caption;
+  });
+});
+
+// close lightbox on × click
+modalClose.addEventListener('click', () => {
+  modal.style.display = 'none';
+});
+
+// close lightbox when clicking outside the image
+modal.addEventListener('click', e => {
+  if (e.target === modal) {
+    modal.style.display = 'none';
+  }
+});
+
   function initialise() {
     drawKeyframe(0); // Start at intro
   }
