@@ -136,7 +136,9 @@ modal.addEventListener('click', e => {
   }
 });
 
-// --- Visualization 1: Los Caminos (Burgundy, Thicker Arcs) ---
+// --- Vis #1: Los Caminos: Migration Pathways & Timeline ---
+
+// 1) Country → [lon,lat]
 const originCoords = {
   Mexico:       [-99.1332, 19.4326],
   ElSalvador:   [-88.8965, 13.7942],
@@ -157,10 +159,12 @@ const originCoords = {
   PuertoRico:   [-66.1057, 18.4655]
 };
 
+// 2) Core map setup
+const arcColor  = "#542831";
 const container = d3.select("#los-caminos");
-const width  = container.node().clientWidth;
-const height = container.node().clientHeight;
-const atlanta = [-84.3880, 33.7490];
+const width     = container.node().clientWidth;
+const height    = container.node().clientHeight;
+const atlanta   = [-84.3880, 33.7490];
 
 const svg = d3.select("#map")
   .attr("viewBox", `0 0 ${width} ${height}`);
@@ -172,20 +176,26 @@ const projection = d3.geoMercator()
 
 const path = d3.geoPath().projection(projection);
 
-// Tooltip div (absolute‐positioned)
-const tooltip = d3.select("#tooltip");
+// Tooltip div (absolute, starts invisible)
+const tooltip = d3.select("#tooltip")
+  .style("position", "absolute")
+  .style("pointer-events", "none")
+  .style("background", "rgba(0,0,0,0.75)")
+  .style("color", "#fff")
+  .style("padding", "4px 8px")
+  .style("border-radius", "4px")
+  .style("font-size", "0.8rem")
+  .style("opacity", 0);
 
-// Arc color and stroke‐width scale
-const arcColor    = "#542831";
-let widthScale;  // defined after data load
+let widthScale;  // will be our stroke‐width scale
 
-// Load the data CSV
+// 3) Load CSV and kick off drawing
 d3.csv("los_caminos_msa.csv", d => {
   d.year = +d.year;
   for (let k in originCoords) d[k] = +d[k];
   return d;
 }).then(rows => {
-  // Flatten into one arc record per country+year
+  // Flatten: one object per (country,year)
   const arcData = [];
   rows.forEach(r => {
     for (let country in originCoords) {
@@ -201,35 +211,58 @@ d3.csv("los_caminos_msa.csv", d => {
     }
   });
 
-  // Build stroke‐width scale now that counts are known
-  const counts = arcData.map(d => d.count);
+  // Build stroke‐width scale (6–24px)
+  const counts = arcData.map(d=>d.count);
   widthScale = d3.scaleSqrt()
     .domain(d3.extent(counts))
-    .range([10, 50]);  // thicker strokes from 2px to 12px
+    .range([6, 15]);
 
-  // Draw base map, origin points, then initial arcs
+  // Draw the static map & origin dots, then arcs for year=2009
   drawBaseMap(() => {
-    // Draw origin dots
+    // origin points
     svg.selectAll(".origin-point")
       .data(Object.entries(originCoords))
       .enter().append("circle")
         .attr("class","origin-point")
-        .attr("r", 4)
-        .attr("fill", arcColor)
+        .attr("r",4)
+        .attr("fill",arcColor)
         .attr("transform", d => {
           const p = projection(d[1]);
           return `translate(${p[0]},${p[1]})`;
         });
 
-    // Draw arcs for the initial year
+    // initial arcs
     updateArcs(2009);
   });
 
-  // Update function: draws arcs for a given year
+  // Slider interaction
+  d3.select("#year-slider").on("input", function() {
+    const y = +this.value;
+    d3.select("#year-label").text(y);
+    updateArcs(y);
+  });
+
+  // Play / Pause
+  let playing = false, timer;
+  d3.select("#play-pause").on("click", () => {
+    playing = !playing;
+    d3.select("#play-pause").text(playing ? "⏸️" : "▶️");
+    if (playing) {
+      timer = setInterval(() => {
+        let y = +d3.select("#year-slider").property("value");
+        y = y >= 2023 ? 2009 : y + 1;
+        d3.select("#year-slider").property("value",y).dispatch("input");
+      }, 800);
+    } else {
+      clearInterval(timer);
+    }
+  });
+
+  // updateArcs: draws the flows for a given year
   function updateArcs(year) {
     const slice = arcData.filter(d => d.year === year);
 
-    // DATA JOIN on .arc paths
+    // JOIN
     const sel = svg.selectAll(".arc")
       .data(slice, d => d.country + "_" + d.year);
 
@@ -239,69 +272,48 @@ d3.csv("los_caminos_msa.csv", d => {
     // ENTER
     const enter = sel.enter().append("path")
       .attr("class","arc")
-      .attr("fill","none")
-      .attr("stroke", arcColor)
-      
+      .attr("fill",arcColor)
+      .attr("stroke",arcColor)
+      .style("opacity",0.8)            // fully opaque
       .attr("stroke-linecap","round")
-      .on("mouseover", (event, d) => {
-        // hover shows: d.count migrants from d.country
+      .on("mouseover",(event,d)=>{
+        /* hover shows: d.count migrants from d.country */
         tooltip
-          .style("left",  (event.pageX + 10) + "px")
-          .style("top",   (event.pageY + 10) + "px")
+          .style("left", (event.pageX+10)+"px")
+          .style("top",  (event.pageY+10)+"px")
           .html(`<strong>${d.country}</strong><br/>${d.count.toLocaleString()} migrants`)
-          .transition().duration(100).style("opacity", 1);
+          .transition().duration(100).style("opacity",1);
       })
-      .on("mouseout", () => {
-        tooltip.transition().duration(100).style("opacity", 0);
+      .on("mouseout",()=>{
+        tooltip.transition().duration(100).style("opacity",0);
       });
 
     // ENTER + UPDATE
     enter.merge(sel)
+      .raise()                      // draw arcs over dots
       .transition().duration(500)
         .attrTween("d", d => {
           const s = projection(d.origin),
                 t = projection(atlanta),
-                m = [(s[0] + t[0]) / 2, (s[1] + t[1]) / 2 - 60];
-          return () => d3.line().curve(d3.curveBasis)([s, m, t]);
+                m = [(s[0]+t[0])/2, (s[1]+t[1])/2 - 60];
+          const line = d3.line().curve(d3.curveBasis)([s,m,t]);
+          return () => line;
         })
         .style("stroke-width", d => widthScale(d.count));
   }
-
-  // Slider interaction
-  d3.select("#year-slider").on("input", function() {
-    const y = +this.value;
-    d3.select("#year-label").text(y);
-    updateArcs(y);
-  });
-
-  // Play/Pause button
-  let playing = false, timer;
-  d3.select("#play-pause").on("click", () => {
-    playing = !playing;
-    d3.select("#play-pause").text(playing ? "⏸️" : "▶️");
-    if (playing) {
-      timer = setInterval(() => {
-        let y = +d3.select("#year-slider").property("value");
-        y = y >= 2023 ? 2009 : y + 1;
-        d3.select("#year-slider").property("value", y).dispatch("input");
-      }, 800);
-    } else {
-      clearInterval(timer);
-    }
-  });
 });
 
-// Draw the world outline (passes control to callback)
-function drawBaseMap(callback) {
+// 4) Draw the world baseline
+function drawBaseMap(done) {
   d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json")
     .then(world => {
       svg.append("path")
         .datum(topojson.feature(world, world.objects.countries))
         .attr("d", path)
         .attr("fill", "#f5f5f5")
-        .attr("stroke", "#bbb")
-        .attr("stroke-width", 0.3);
-      if (callback) callback();
+        .attr("stroke","#bbb")
+        .attr("stroke-width",0.3);
+      if (done) done();
     });
 }
 
@@ -394,98 +406,110 @@ d3.select('#origin-filter').on('change', () => {
   drawMap(metroCounties);
 });
 
-// --- Visualization 3: Working Atlanta (stacked bar chart) ---
 
-// 1) Fake data: number of workers by industry & nativity
-const data3 = [
-  { industry: "Construction", foreign: 5000, usborn: 2000 },
-  { industry: "Hospitality",   foreign: 3000, usborn: 2500 },
-  { industry: "Transportation",foreign: 1500, usborn: 1000 },
-  { industry: "Domestic Work", foreign:  800, usborn:  400 },
-  { industry: "Healthcare",    foreign: 1200, usborn: 1800 }
-];
+// --- Visualization 3: Working Atlanta (Bar Chart) ---
+;(function(){
+  const svg    = d3.select("#wa-chart"),
+        margin = {top:40, right:20, bottom:100, left:120},
+        width  = +svg.attr("width")  - margin.left - margin.right,
+        height = +svg.attr("height") - margin.top  - margin.bottom;
 
-// 2) Set margins & dimensions
-const margin3 = { top: 20, right: 20, bottom: 60, left: 60 };
-const svgEl3 = document.getElementById("vis-working-atlanta");
-const width3  = svgEl3.clientWidth  - margin3.left - margin3.right;
-const height3 = svgEl3.clientHeight - margin3.top  - margin3.bottom;
+  const g = svg.append("g")
+    .attr("transform", `translate(${margin.left},${margin.top})`);
 
-const svg3 = d3.select("#vis-working-atlanta")
-  .attr("width",  width3 + margin3.left + margin3.right)
-  .attr("height", height3 + margin3.top  + margin3.bottom)
-  .append("g")
-    .attr("transform", `translate(${margin3.left},${margin3.top})`);
+  const x = d3.scaleBand().range([0, width]).padding(0.2);
+  const y = d3.scaleLinear().range([height, 0]);
 
-// 3) Stack layout
-const keys3 = ["foreign","usborn"];
-const stack3 = d3.stack().keys(keys3);
-const series3 = stack3(data3);
+  const xAxisG = g.append("g")
+    .attr("class", "axis axis--x")
+    .attr("transform", `translate(0,${height})`);
+  const yAxisG = g.append("g")
+    .attr("class", "axis axis--y");
 
-// 4) Scales
-const x3 = d3.scaleBand()
-  .domain(data3.map(d => d.industry))
-  .range([0, width3])
-  .padding(0.2);
+  const tooltip = d3.select("#wa-tooltip");
 
-const y3 = d3.scaleLinear()
-  .domain([0, d3.max(data3, d => d.foreign + d.usborn)])
-  .nice()
-  .range([height3, 0]);
+  let nestedData;
 
-const color3 = d3.scaleOrdinal()
-  .domain(keys3)
-  .range(["#6b486b", "#a05d56"]);
+  // load your cleaned CSV
+  d3.csv("working_atlanta_data.csv", d => {
+    d.year  = +d.year;
+    d.count = +d.count;
+    return d;
+  }).then(data => {
+    // nest by year → nativity
+    nestedData = d3.group(data, d => d.year, d => d.nativity);
 
-// 5) Draw bars
-svg3.selectAll("g.layer")
-  .data(series3)
-  .enter().append("g")
-    .attr("class","layer")
-    .attr("fill", d => color3(d.key))
-  .selectAll("rect")
-  .data(d => d)
-  .enter().append("rect")
-    .attr("x", d => x3(d.data.industry))
-    .attr("y", d => y3(d[1]))
-    .attr("height", d => y3(d[0]) - y3(d[1]))
-    .attr("width", x3.bandwidth());
+    // initial draw
+    updateChart(2023, "foreign-born");
 
-// 6) Axes
-svg3.append("g")
-    .attr("class","axis")
-    .attr("transform", `translate(0,${height3})`)
-    .call(d3.axisBottom(x3))
-    .selectAll("text")
-      .attr("transform","rotate(-40)")
-      .attr("text-anchor","end")
-      .attr("dx","-0.8em")
-      .attr("dy","0.15em");
+    // controls
+    d3.select("#wa-year-slider").on("input", function() {
+      const yr = +this.value;
+      d3.select("#wa-year-label").text(yr);
+      updateChart(yr, d3.select("#wa-nativity").property("value"));
+    });
+    d3.select("#wa-nativity").on("change", function() {
+      const yr = +d3.select("#wa-year-slider").property("value");
+      updateChart(yr, this.value);
+    });
+  });
 
-svg3.append("g")
-    .attr("class","axis")
-    .call(d3.axisLeft(y3).ticks(5));
+  function updateChart(year, nativity) {
+    // grab the right slice
+    const slice = nestedData.get(year).get(nativity)
+      .sort((a, b) => d3.ascending(a.industry, b.industry));
 
-// 7) Legend
-const legendData3 = [
-  { key: "foreign", label: "Foreign-born" },
-  { key: "usborn",  label: "U.S.-born" }
-];
+    // update scales
+    x.domain(slice.map(d => d.industry));
+    y.domain([0, d3.max(slice, d => d.count) * 1.1]).nice();
 
-const legend3 = d3.select("#legend-working")
-  .selectAll(".legend-working")
-  .data(legendData3)
-  .enter().append("div")
-    .attr("class","legend-working");
+    // DATA JOIN
+    const bars = g.selectAll(".bar")
+      .data(slice, d => d.industry);
 
-legend3.append("span")
-    .attr("class","legend-swatch")
-    .style("background", d => color3(d.key));
+    // EXIT
+    bars.exit().remove();
 
-legend3.append("span")
-    .text(d => d.label);
+    // ENTER
+    const barsEnter = bars.enter().append("rect")
+      .attr("class", "bar")
+      .attr("x",     d => x(d.industry))
+      .attr("width", x.bandwidth())
+      .attr("y",     height)
+      .attr("height", 0)
+      .attr("fill", "#542831")
+      .on("mouseover", (e, d) => {
+        tooltip
+          .style("left",  (e.pageX + 10) + "px")
+          .style("top",   (e.pageY + 10) + "px")
+          .html(`<strong>${d.industry}</strong><br/>${d.count.toLocaleString()}`)
+          .transition().duration(50).style("opacity", 1);
+      })
+      .on("mouseout", () =>
+        tooltip.transition().duration(50).style("opacity", 0)
+      );
 
+    // ENTER + UPDATE
+    barsEnter.merge(bars)
+      .transition().duration(600)
+        .attr("x",      d => x(d.industry))
+        .attr("width",  x.bandwidth())
+        .attr("y",      d => y(d.count))
+        .attr("height", d => height - y(d.count));
 
+    // update axes
+    xAxisG.transition().duration(600)
+      .call(d3.axisBottom(x))
+      .selectAll("text")
+        .attr("text-anchor","end")
+        .attr("transform",   "rotate(-20)")
+        .attr("dx",          "-0.6em")
+        .attr("dy",          "0.3em");
+
+    yAxisG.transition().duration(600)
+      .call(d3.axisLeft(y).ticks(8).tickFormat(d3.format(",")));
+  }
+})();
 
 
   // --- Visualization 4: Speaking Across Borders ---

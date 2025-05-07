@@ -48,7 +48,6 @@
             <h2>Los Caminos: Migration Pathways & Timeline</h2>
             <p class="viz-description">
               Animated flow map showing where Latinx migrants to Atlanta come from and when they arrived.
-             Use the ▶️ button or the slider below to animate arrivals by decade.
              Use the ▶️ button or the slider below to animate arrivals by year.
             </p>
           </div>
@@ -95,19 +94,40 @@
   </section>
 
       <!-- Verse 4: Working Atlanta -->
-  <section class="full-slide content-slide" id="verse5">
-    <div class="viz-header">
-      <h2>Working Atlanta: Latinx Labor in the City</h2>
-      <p class="viz-description">
-        Stacked bars show the number of Latinx workers in key industries, split by foreign-born vs. U.S.-born.
-      </p>
-    </div>
+  
 
-    <div id="working-atlanta">
-      <svg id="vis-working-atlanta"></svg>
-      <div id="legend-working"></div>
+  <section class="full-slide content-slide" id="verse5">
+    <h2>Working Atlanta: Latinx Labor in the City</h2>
+    <div class="controls" style="margin:1rem 0; display:flex; align-items:center; gap:1rem;">
+      <label>
+        Year:
+        <input type="range" id="wa-year-slider" min="2009" max="2023" value="2023">
+        <span id="wa-year-label">2023</span>
+      </label>
+      <label>
+        Nativity:
+        <select id="wa-nativity">
+          <option value="foreign-born">Foreign-born</option>
+          <option value="native-born">U.S.-born</option>
+        </select>
+      </label>
+    </div>
+    <div style="position:relative;">
+      <svg id="wa-chart" width="960" height="500"></svg>
+      <div id="wa-tooltip" style="
+        position:absolute;
+        pointer-events:none;
+        background:rgba(0,0,0,0.75);
+        color:#fff;
+        padding:4px 8px;
+        border-radius:4px;
+        font-size:0.8rem;
+        opacity:0;
+        transition:opacity 0.1s;
+      "></div>
     </div>
   </section>
+  
 
 
     <!-- Verse 6 -->

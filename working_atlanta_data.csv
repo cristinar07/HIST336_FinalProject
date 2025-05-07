@@ -1,0 +1,391 @@
+year,industry,nativity,count
+2009,Construction,foreign-born,229659
+2009,Manufacturing,foreign-born,61906
+2009,Wholesale & Retail Trade,foreign-born,15813
+2009,Transportation & Warehousing,foreign-born,36339
+2009,Information,foreign-born,27690
+2009,Finance & Insurance,foreign-born,25322
+2009,"Professional, Scientific & Technical Services",foreign-born,18224
+2009,Educational Services,foreign-born,7098
+2009,Health Care & Social Assistance,foreign-born,163159
+2009,"Arts, Entertainment & Recreation",foreign-born,3306
+2009,Accommodation & Food Services,foreign-born,36171
+2009,Other Services,foreign-born,20864
+2009,Public Administration,foreign-born,15307
+2009,Construction,native-born,236688
+2009,Manufacturing,native-born,155310
+2009,Wholesale & Retail Trade,native-born,131361
+2009,Transportation & Warehousing,native-born,15585
+2009,Information,native-born,62639
+2009,Finance & Insurance,native-born,53137
+2009,"Professional, Scientific & Technical Services",native-born,1191741
+2009,Educational Services,native-born,492670
+2009,Health Care & Social Assistance,native-born,191606
+2009,"Arts, Entertainment & Recreation",native-born,111238
+2009,Accommodation & Food Services,native-born,80368
+2009,Other Services,native-born,301064
+2009,Public Administration,native-born,24865
+2010,Construction,foreign-born,107994
+2010,Manufacturing,foreign-born,62256
+2010,Wholesale & Retail Trade,foreign-born,13680
+2010,Transportation & Warehousing,foreign-born,14421
+2010,Information,foreign-born,35580
+2010,Finance & Insurance,foreign-born,25611
+2010,"Professional, Scientific & Technical Services",foreign-born,25906
+2010,Educational Services,foreign-born,18685
+2010,Health Care & Social Assistance,foreign-born,7221
+2010,"Arts, Entertainment & Recreation",foreign-born,158518
+2010,Accommodation & Food Services,foreign-born,3549
+2010,Other Services,foreign-born,35222
+2010,Public Administration,foreign-born,20178
+2010,Construction,native-born,221154
+2010,Manufacturing,native-born,2814
+2010,Wholesale & Retail Trade,native-born,75247
+2010,Transportation & Warehousing,native-born,76373
+2010,Information,native-born,49318
+2010,Finance & Insurance,native-born,1176391
+2010,"Professional, Scientific & Technical Services",native-born,489593
+2010,Educational Services,native-born,193174
+2010,Health Care & Social Assistance,native-born,109988
+2010,"Arts, Entertainment & Recreation",native-born,83186
+2010,Accommodation & Food Services,native-born,40277
+2010,Other Services,native-born,24835
+2010,Public Administration,native-born,6180
+2011,Construction,foreign-born,108682
+2011,Manufacturing,foreign-born,63334
+2011,Wholesale & Retail Trade,foreign-born,13831
+2011,Transportation & Warehousing,foreign-born,14854
+2011,Information,foreign-born,36388
+2011,Finance & Insurance,foreign-born,26084
+2011,"Professional, Scientific & Technical Services",foreign-born,26706
+2011,Educational Services,foreign-born,19354
+2011,Health Care & Social Assistance,foreign-born,7352
+2011,"Arts, Entertainment & Recreation",foreign-born,165463
+2011,Accommodation & Food Services,foreign-born,3473
+2011,Other Services,foreign-born,35161
+2011,Public Administration,foreign-born,19833
+2011,Construction,native-born,211723
+2011,Manufacturing,native-born,3384
+2011,Wholesale & Retail Trade,native-born,74385
+2011,Transportation & Warehousing,native-born,74365
+2011,Information,native-born,49420
+2011,Finance & Insurance,native-born,1184571
+2011,"Professional, Scientific & Technical Services",native-born,496239
+2011,Educational Services,native-born,194657
+2011,Health Care & Social Assistance,native-born,109826
+2011,"Arts, Entertainment & Recreation",native-born,84831
+2011,Accommodation & Food Services,native-born,40482
+2011,Other Services,native-born,24918
+2011,Public Administration,native-born,6380
+2012,Construction,foreign-born,109917
+2012,Manufacturing,foreign-born,64431
+2012,Wholesale & Retail Trade,foreign-born,13629
+2012,Transportation & Warehousing,foreign-born,14684
+2012,Information,foreign-born,37359
+2012,Finance & Insurance,foreign-born,27125
+2012,"Professional, Scientific & Technical Services",foreign-born,26582
+2012,Educational Services,foreign-born,18682
+2012,Health Care & Social Assistance,foreign-born,7900
+2012,"Arts, Entertainment & Recreation",foreign-born,170128
+2012,Accommodation & Food Services,foreign-born,4456
+2012,Other Services,foreign-born,36125
+2012,Public Administration,foreign-born,21369
+2012,Construction,native-born,202579
+2012,Manufacturing,native-born,3339
+2012,Wholesale & Retail Trade,native-born,76437
+2012,Transportation & Warehousing,native-born,74009
+2012,Information,native-born,50174
+2012,Finance & Insurance,native-born,1188254
+2012,"Professional, Scientific & Technical Services",native-born,502300
+2012,Educational Services,native-born,195456
+2012,Health Care & Social Assistance,native-born,112639
+2012,"Arts, Entertainment & Recreation",native-born,82817
+2012,Accommodation & Food Services,native-born,40434
+2012,Other Services,native-born,24115
+2012,Public Administration,native-born,6493
+2013,Construction,foreign-born,110625
+2013,Manufacturing,foreign-born,65211
+2013,Wholesale & Retail Trade,foreign-born,13015
+2013,Transportation & Warehousing,foreign-born,15437
+2013,Information,foreign-born,37720
+2013,Finance & Insurance,foreign-born,27986
+2013,"Professional, Scientific & Technical Services",foreign-born,28443
+2013,Educational Services,foreign-born,20219
+2013,Health Care & Social Assistance,foreign-born,8224
+2013,"Arts, Entertainment & Recreation",foreign-born,176007
+2013,Accommodation & Food Services,foreign-born,4902
+2013,Other Services,foreign-born,36169
+2013,Public Administration,foreign-born,21191
+2013,Construction,native-born,195750
+2013,Manufacturing,native-born,3672
+2013,Wholesale & Retail Trade,native-born,76155
+2013,Transportation & Warehousing,native-born,75006
+2013,Information,native-born,50152
+2013,Finance & Insurance,native-born,1191640
+2013,"Professional, Scientific & Technical Services",native-born,505769
+2013,Educational Services,native-born,196150
+2013,Health Care & Social Assistance,native-born,112989
+2013,"Arts, Entertainment & Recreation",native-born,83161
+2013,Accommodation & Food Services,native-born,40813
+2013,Other Services,native-born,24305
+2013,Public Administration,native-born,6627
+2014,Construction,foreign-born,113364
+2014,Manufacturing,foreign-born,67358
+2014,Wholesale & Retail Trade,foreign-born,13601
+2014,Transportation & Warehousing,foreign-born,15603
+2014,Information,foreign-born,38254
+2014,Finance & Insurance,foreign-born,28335
+2014,"Professional, Scientific & Technical Services",foreign-born,28807
+2014,Educational Services,foreign-born,21036
+2014,Health Care & Social Assistance,foreign-born,7771
+2014,"Arts, Entertainment & Recreation",foreign-born,182319
+2014,Accommodation & Food Services,foreign-born,5168
+2014,Other Services,foreign-born,36769
+2014,Public Administration,foreign-born,21267
+2014,Construction,native-born,196450
+2014,Manufacturing,native-born,3571
+2014,Wholesale & Retail Trade,native-born,77108
+2014,Transportation & Warehousing,native-born,75729
+2014,Information,native-born,52745
+2014,Finance & Insurance,native-born,1208309
+2014,"Professional, Scientific & Technical Services",native-born,517843
+2014,Educational Services,native-born,200651
+2014,Health Care & Social Assistance,native-born,115675
+2014,"Arts, Entertainment & Recreation",native-born,84976
+2014,Accommodation & Food Services,native-born,42345
+2014,Other Services,native-born,25367
+2014,Public Administration,native-born,6830
+2015,Construction,foreign-born,120116
+2015,Manufacturing,foreign-born,72018
+2015,Wholesale & Retail Trade,foreign-born,13459
+2015,Transportation & Warehousing,foreign-born,16140
+2015,Information,foreign-born,39175
+2015,Finance & Insurance,foreign-born,29505
+2015,"Professional, Scientific & Technical Services",foreign-born,29150
+2015,Educational Services,foreign-born,21097
+2015,Health Care & Social Assistance,foreign-born,8053
+2015,"Arts, Entertainment & Recreation",foreign-born,186657
+2015,Accommodation & Food Services,foreign-born,5299
+2015,Other Services,foreign-born,37193
+2015,Public Administration,foreign-born,20968
+2015,Construction,native-born,200218
+2015,Manufacturing,native-born,3628
+2015,Wholesale & Retail Trade,native-born,79591
+2015,Transportation & Warehousing,native-born,79898
+2015,Information,native-born,55596
+2015,Finance & Insurance,native-born,1240480
+2015,"Professional, Scientific & Technical Services",native-born,534535
+2015,Educational Services,native-born,204561
+2015,Health Care & Social Assistance,native-born,119366
+2015,"Arts, Entertainment & Recreation",native-born,85195
+2015,Accommodation & Food Services,native-born,44370
+2015,Other Services,native-born,26373
+2015,Public Administration,native-born,7346
+2016,Construction,foreign-born,125134
+2016,Manufacturing,foreign-born,75963
+2016,Wholesale & Retail Trade,foreign-born,13163
+2016,Transportation & Warehousing,foreign-born,16297
+2016,Information,foreign-born,39736
+2016,Finance & Insurance,foreign-born,30432
+2016,"Professional, Scientific & Technical Services",foreign-born,29773
+2016,Educational Services,foreign-born,21694
+2016,Health Care & Social Assistance,foreign-born,8079
+2016,"Arts, Entertainment & Recreation",foreign-born,191717
+2016,Accommodation & Food Services,foreign-born,5555
+2016,Other Services,foreign-born,38157
+2016,Public Administration,foreign-born,21522
+2016,Construction,native-born,202738
+2016,Manufacturing,native-born,3525
+2016,Wholesale & Retail Trade,native-born,81936
+2016,Transportation & Warehousing,native-born,82913
+2016,Information,native-born,56171
+2016,Finance & Insurance,native-born,1281992
+2016,"Professional, Scientific & Technical Services",native-born,557321
+2016,Educational Services,native-born,214730
+2016,Health Care & Social Assistance,native-born,126416
+2016,"Arts, Entertainment & Recreation",native-born,88314
+2016,Accommodation & Food Services,native-born,46870
+2016,Other Services,native-born,28481
+2016,Public Administration,native-born,7345
+2017,Construction,foreign-born,131805
+2017,Manufacturing,foreign-born,81288
+2017,Wholesale & Retail Trade,foreign-born,13751
+2017,Transportation & Warehousing,foreign-born,16233
+2017,Information,foreign-born,41227
+2017,Finance & Insurance,foreign-born,31245
+2017,"Professional, Scientific & Technical Services",foreign-born,30759
+2017,Educational Services,foreign-born,22376
+2017,Health Care & Social Assistance,foreign-born,8383
+2017,"Arts, Entertainment & Recreation",foreign-born,193694
+2017,Accommodation & Food Services,foreign-born,5479
+2017,Other Services,foreign-born,38183
+2017,Public Administration,foreign-born,21266
+2017,Construction,native-born,209507
+2017,Manufacturing,native-born,3355
+2017,Wholesale & Retail Trade,native-born,83871
+2017,Transportation & Warehousing,native-born,85115
+2017,Information,native-born,58315
+2017,Finance & Insurance,native-born,1327099
+2017,"Professional, Scientific & Technical Services",native-born,581182
+2017,Educational Services,native-born,226257
+2017,Health Care & Social Assistance,native-born,132842
+2017,"Arts, Entertainment & Recreation",native-born,93415
+2017,Accommodation & Food Services,native-born,48279
+2017,Other Services,native-born,29749
+2017,Public Administration,native-born,7836
+2018,Construction,foreign-born,138417
+2018,Manufacturing,foreign-born,87114
+2018,Wholesale & Retail Trade,foreign-born,14013
+2018,Transportation & Warehousing,foreign-born,16290
+2018,Information,foreign-born,41949
+2018,Finance & Insurance,foreign-born,31836
+2018,"Professional, Scientific & Technical Services",foreign-born,30859
+2018,Educational Services,foreign-born,21920
+2018,Health Care & Social Assistance,foreign-born,8939
+2018,"Arts, Entertainment & Recreation",foreign-born,194265
+2018,Accommodation & Food Services,foreign-born,7187
+2018,Other Services,foreign-born,39139
+2018,Public Administration,foreign-born,21413
+2018,Construction,native-born,213332
+2018,Manufacturing,native-born,3305
+2018,Wholesale & Retail Trade,native-born,84886
+2018,Transportation & Warehousing,native-born,91219
+2018,Information,native-born,81309
+2018,Finance & Insurance,native-born,1368872
+2018,"Professional, Scientific & Technical Services",native-born,609142
+2018,Educational Services,native-born,236279
+2018,Health Care & Social Assistance,native-born,132521
+2018,"Arts, Entertainment & Recreation",native-born,103758
+2018,Accommodation & Food Services,native-born,52900
+2018,Other Services,native-born,33560
+2018,Public Administration,native-born,7616
+2019,Construction,foreign-born,145812
+2019,Manufacturing,foreign-born,92364
+2019,Wholesale & Retail Trade,foreign-born,14844
+2019,Transportation & Warehousing,foreign-born,16456
+2019,Information,foreign-born,43389
+2019,Finance & Insurance,foreign-born,33921
+2019,"Professional, Scientific & Technical Services",foreign-born,32011
+2019,Educational Services,foreign-born,22568
+2019,Health Care & Social Assistance,foreign-born,9443
+2019,"Arts, Entertainment & Recreation",foreign-born,195167
+2019,Accommodation & Food Services,foreign-born,7168
+2019,Other Services,foreign-born,39526
+2019,Public Administration,foreign-born,21615
+2019,Construction,native-born,217304
+2019,Manufacturing,native-born,3220
+2019,Wholesale & Retail Trade,native-born,88139
+2019,Transportation & Warehousing,native-born,96534
+2019,Information,native-born,82538
+2019,Finance & Insurance,native-born,1410151
+2019,"Professional, Scientific & Technical Services",native-born,637017
+2019,Educational Services,native-born,247584
+2019,Health Care & Social Assistance,native-born,140168
+2019,"Arts, Entertainment & Recreation",native-born,107416
+2019,Accommodation & Food Services,native-born,56826
+2019,Other Services,native-born,35146
+2019,Public Administration,native-born,8506
+2020,Construction,foreign-born,153651
+2020,Manufacturing,foreign-born,97181
+2020,Wholesale & Retail Trade,foreign-born,14731
+2020,Transportation & Warehousing,foreign-born,17324
+2020,Information,foreign-born,44166
+2020,Finance & Insurance,foreign-born,34204
+2020,"Professional, Scientific & Technical Services",foreign-born,33999
+2020,Educational Services,foreign-born,23302
+2020,Health Care & Social Assistance,foreign-born,10697
+2020,"Arts, Entertainment & Recreation",foreign-born,193871
+2020,Accommodation & Food Services,foreign-born,8062
+2020,Other Services,foreign-born,40183
+2020,Public Administration,foreign-born,22731
+2020,Construction,native-born,210969
+2020,Manufacturing,native-born,3418
+2020,Wholesale & Retail Trade,native-born,88306
+2020,Transportation & Warehousing,native-born,98145
+2020,Information,native-born,80407
+2020,Finance & Insurance,native-born,1436599
+2020,"Professional, Scientific & Technical Services",native-born,663351
+2020,Educational Services,native-born,262040
+2020,Health Care & Social Assistance,native-born,148726
+2020,"Arts, Entertainment & Recreation",native-born,113314
+2020,Accommodation & Food Services,native-born,60578
+2020,Other Services,native-born,36607
+2020,Public Administration,native-born,9367
+2021,Construction,foreign-born,162960
+2021,Manufacturing,foreign-born,101357
+2021,Wholesale & Retail Trade,foreign-born,15343
+2021,Transportation & Warehousing,foreign-born,18508
+2021,Information,foreign-born,46724
+2021,Finance & Insurance,foreign-born,36191
+2021,"Professional, Scientific & Technical Services",foreign-born,35316
+2021,Educational Services,foreign-born,23894
+2021,Health Care & Social Assistance,foreign-born,11422
+2021,"Arts, Entertainment & Recreation",foreign-born,192704
+2021,Accommodation & Food Services,foreign-born,8111
+2021,Other Services,foreign-born,41656
+2021,Public Administration,foreign-born,23934
+2021,Construction,native-born,212772
+2021,Manufacturing,native-born,3300
+2021,Wholesale & Retail Trade,native-born,87697
+2021,Transportation & Warehousing,native-born,100041
+2021,Information,native-born,84085
+2021,Finance & Insurance,native-born,1455923
+2021,"Professional, Scientific & Technical Services",native-born,685955
+2021,Educational Services,native-born,270415
+2021,Health Care & Social Assistance,native-born,155428
+2021,"Arts, Entertainment & Recreation",native-born,114987
+2021,Accommodation & Food Services,native-born,65361
+2021,Other Services,native-born,38677
+2021,Public Administration,native-born,10680
+2022,Construction,foreign-born,172157
+2022,Manufacturing,foreign-born,106496
+2022,Wholesale & Retail Trade,foreign-born,15419
+2022,Transportation & Warehousing,foreign-born,17818
+2022,Information,foreign-born,46506
+2022,Finance & Insurance,foreign-born,38251
+2022,"Professional, Scientific & Technical Services",foreign-born,37071
+2022,Educational Services,foreign-born,25981
+2022,Health Care & Social Assistance,foreign-born,11090
+2022,"Arts, Entertainment & Recreation",foreign-born,192494
+2022,Accommodation & Food Services,foreign-born,8586
+2022,Other Services,foreign-born,43056
+2022,Public Administration,foreign-born,25580
+2022,Construction,native-born,213556
+2022,Manufacturing,native-born,3597
+2022,Wholesale & Retail Trade,native-born,90018
+2022,Transportation & Warehousing,native-born,106485
+2022,Information,native-born,88148
+2022,Finance & Insurance,native-born,1477349
+2022,"Professional, Scientific & Technical Services",native-born,706914
+2022,Educational Services,native-born,279746
+2022,Health Care & Social Assistance,native-born,161151
+2022,"Arts, Entertainment & Recreation",native-born,118595
+2022,Accommodation & Food Services,native-born,70357
+2022,Other Services,native-born,41635
+2022,Public Administration,native-born,11371
+2023,Construction,foreign-born,182253
+2023,Manufacturing,foreign-born,112749
+2023,Wholesale & Retail Trade,foreign-born,14841
+2023,Transportation & Warehousing,foreign-born,17820
+2023,Information,foreign-born,46732
+2023,Finance & Insurance,foreign-born,39465
+2023,"Professional, Scientific & Technical Services",foreign-born,37806
+2023,Educational Services,foreign-born,26979
+2023,Health Care & Social Assistance,foreign-born,10827
+2023,"Arts, Entertainment & Recreation",foreign-born,192455
+2023,Accommodation & Food Services,foreign-born,8453
+2023,Other Services,foreign-born,42736
+2023,Public Administration,foreign-born,25790
+2023,Construction,native-born,215982
+2023,Manufacturing,native-born,3750
+2023,Wholesale & Retail Trade,native-born,87757
+2023,Transportation & Warehousing,native-born,104297
+2023,Information,native-born,91183
+2023,Finance & Insurance,native-born,1511015
+2023,"Professional, Scientific & Technical Services",native-born,733479
+2023,Educational Services,native-born,294608
+2023,Health Care & Social Assistance,native-born,168947
+2023,"Arts, Entertainment & Recreation",native-born,125661
+2023,Accommodation & Food Services,native-born,75591
+2023,Other Services,native-born,44362
+2023,Public Administration,native-born,12774

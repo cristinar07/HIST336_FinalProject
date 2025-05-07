@@ -591,3 +591,8 @@
   stroke: #333;
   stroke-width: 0.5;
 }
+
+#wa-chart .bar { fill: #542831; }
+#wa-chart .axis path,
+#wa-chart .axis line { stroke: #ccc; }
+
