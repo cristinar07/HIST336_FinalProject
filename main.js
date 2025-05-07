@@ -136,94 +136,174 @@ modal.addEventListener('click', e => {
   }
 });
 
-// --- Los Caminos: Migration Pathways & Timeline ---
-const fakeData = [
-  { year:1980, origin:[-99.1332,19.4326], count:120 },
-  { year:1980, origin:[-87.2073,14.0818], count:60  },
-  { year:1980, origin:[-90.5069,14.6349], count:30  },
-  { year:1990, origin:[-99.1332,19.4326], count:240 },
-  { year:1990, origin:[-87.2073,14.0818], count:120 },
-  { year:1990, origin:[-90.5069,14.6349], count:90 },
-  { year:2000, origin:[-99.1332,19.4326], count:360 },
-  { year:2000, origin:[-87.2073,14.0818], count:180 },
-  { year:2000, origin:[-90.5069,14.6349], count:150 },
-  { year:2010, origin:[-99.1332,19.4326], count:480 },
-  { year:2010, origin:[-87.2073,14.0818], count:240 },
-  { year:2010, origin:[-90.5069,14.6349], count:210 },
-  { year:2020, origin:[-99.1332,19.4326], count:600 },
-  { year:2020, origin:[-87.2073,14.0818], count:300 },
-  { year:2020, origin:[-90.5069,14.6349], count:270 }
-];
+// --- Visualization 1: Los Caminos (Burgundy, Thicker Arcs) ---
+const originCoords = {
+  Mexico:       [-99.1332, 19.4326],
+  ElSalvador:   [-88.8965, 13.7942],
+  Honduras:     [-86.2419, 14.0723],
+  Guatemala:    [-90.2308, 15.7835],
+  Nicaragua:    [-85.2072, 12.8654],
+  CostaRica:    [-84.0739, 9.9333],
+  Panama:       [-79.5167, 8.9833],
+  Colombia:     [-74.0721, 4.7110],
+  Venezuela:    [-66.9036, 10.4806],
+  Ecuador:      [-78.4678, -0.1807],
+  Peru:         [-77.0428, -12.0464],
+  Chile:        [-70.6693, -33.4489],
+  Argentina:    [-58.4173, -34.6118],
+  Brazil:       [-47.8825, -15.7942],
+  Cuba:         [-82.3666, 23.1136],
+  DomRepublic:  [-69.9312, 18.4861],
+  PuertoRico:   [-66.1057, 18.4655]
+};
 
-const container = document.getElementById('los-caminos');
-const width  = container.clientWidth;
-const height = container.clientHeight;
-const atlanta = [-84.3880,33.7490];
+const container = d3.select("#los-caminos");
+const width  = container.node().clientWidth;
+const height = container.node().clientHeight;
+const atlanta = [-84.3880, 33.7490];
 
-const svg = d3.select("#map");
+const svg = d3.select("#map")
+  .attr("viewBox", `0 0 ${width} ${height}`);
+
 const projection = d3.geoMercator()
-                     .center([-90,25])
-                     .scale(900)
-                     .translate([width/2, height/2]);
+  .center([-55, 10])
+  .scale(300)
+  .translate([width/2, height/2]);
+
 const path = d3.geoPath().projection(projection);
 
-// Draw base map (US outline)
-d3.json("https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json").then(us => {
-  svg.append("path")
-     .datum(topojson.feature(us, us.objects.nation))
-     .attr("d", path)
-     .attr("fill","#eee");
-  updateArcs(+d3.select("#year-slider").property("value"));
-});
+// Tooltip div (absolute‐positioned)
+const tooltip = d3.select("#tooltip");
 
-function updateArcs(year) {
-  const pts = fakeData.filter(d => d.year === year);
-  const arcs = svg.selectAll(".arc")
-    .data(pts, d => d.origin.join(",") + "-" + d.year);
+// Arc color and stroke‐width scale
+const arcColor    = "#542831";
+let widthScale;  // defined after data load
 
-  arcs.exit().remove();
+// Load the data CSV
+d3.csv("los_caminos_msa.csv", d => {
+  d.year = +d.year;
+  for (let k in originCoords) d[k] = +d[k];
+  return d;
+}).then(rows => {
+  // Flatten into one arc record per country+year
+  const arcData = [];
+  rows.forEach(r => {
+    for (let country in originCoords) {
+      const cnt = r[country];
+      if (cnt && cnt > 0) {
+        arcData.push({
+          year:    r.year,
+          origin:  originCoords[country],
+          count:   cnt,
+          country: country
+        });
+      }
+    }
+  });
 
-  const enter = arcs.enter()
-    .append("path")
-    .attr("class","arc")
-    .attr("d", d => {
-      const s = projection(d.origin);
-      const t = projection(atlanta);
-      const m = [(s[0]+t[0])/2, (s[1]+t[1])/2 - 100];
-      return d3.line().curve(d3.curveBasis)([s,m,t]);
-    })
-    .style("stroke-width", d => Math.sqrt(d.count)/2)
-    .style("opacity", 0);
+  // Build stroke‐width scale now that counts are known
+  const counts = arcData.map(d => d.count);
+  widthScale = d3.scaleSqrt()
+    .domain(d3.extent(counts))
+    .range([10, 50]);  // thicker strokes from 2px to 12px
 
-  enter.transition().duration(500)
-       .style("opacity", 0.7);
-}
+  // Draw base map, origin points, then initial arcs
+  drawBaseMap(() => {
+    // Draw origin dots
+    svg.selectAll(".origin-point")
+      .data(Object.entries(originCoords))
+      .enter().append("circle")
+        .attr("class","origin-point")
+        .attr("r", 4)
+        .attr("fill", arcColor)
+        .attr("transform", d => {
+          const p = projection(d[1]);
+          return `translate(${p[0]},${p[1]})`;
+        });
 
-// Year‐slider interaction
-d3.select("#year-slider").on("input", function() {
-  const y = +this.value;
-  d3.select("#year-label").text(y);
-  updateArcs(y);
-});
+    // Draw arcs for the initial year
+    updateArcs(2009);
+  });
 
-// Play/Pause animation
-let playing = false, timer;
-d3.select("#play-pause").on("click", function() {
-  playing = !playing;
-  d3.select(this).text(playing ? "⏸️" : "▶️");
-  if (playing) {
-    timer = setInterval(() => {
-      let y = +d3.select("#year-slider").property("value");
-      // new:
-      y  = y + 1 > 2023 ? 2009 : y + 1;
-      d3.select("#year-slider").property("value", y).dispatch("input");
-    }, 1500);
-  } else {
-    clearInterval(timer);
+  // Update function: draws arcs for a given year
+  function updateArcs(year) {
+    const slice = arcData.filter(d => d.year === year);
+
+    // DATA JOIN on .arc paths
+    const sel = svg.selectAll(".arc")
+      .data(slice, d => d.country + "_" + d.year);
+
+    // EXIT
+    sel.exit().remove();
+
+    // ENTER
+    const enter = sel.enter().append("path")
+      .attr("class","arc")
+      .attr("fill","none")
+      .attr("stroke", arcColor)
+      
+      .attr("stroke-linecap","round")
+      .on("mouseover", (event, d) => {
+        // hover shows: d.count migrants from d.country
+        tooltip
+          .style("left",  (event.pageX + 10) + "px")
+          .style("top",   (event.pageY + 10) + "px")
+          .html(`<strong>${d.country}</strong><br/>${d.count.toLocaleString()} migrants`)
+          .transition().duration(100).style("opacity", 1);
+      })
+      .on("mouseout", () => {
+        tooltip.transition().duration(100).style("opacity", 0);
+      });
+
+    // ENTER + UPDATE
+    enter.merge(sel)
+      .transition().duration(500)
+        .attrTween("d", d => {
+          const s = projection(d.origin),
+                t = projection(atlanta),
+                m = [(s[0] + t[0]) / 2, (s[1] + t[1]) / 2 - 60];
+          return () => d3.line().curve(d3.curveBasis)([s, m, t]);
+        })
+        .style("stroke-width", d => widthScale(d.count));
   }
+
+  // Slider interaction
+  d3.select("#year-slider").on("input", function() {
+    const y = +this.value;
+    d3.select("#year-label").text(y);
+    updateArcs(y);
+  });
+
+  // Play/Pause button
+  let playing = false, timer;
+  d3.select("#play-pause").on("click", () => {
+    playing = !playing;
+    d3.select("#play-pause").text(playing ? "⏸️" : "▶️");
+    if (playing) {
+      timer = setInterval(() => {
+        let y = +d3.select("#year-slider").property("value");
+        y = y >= 2023 ? 2009 : y + 1;
+        d3.select("#year-slider").property("value", y).dispatch("input");
+      }, 800);
+    } else {
+      clearInterval(timer);
+    }
+  });
 });
 
-
+// Draw the world outline (passes control to callback)
+function drawBaseMap(callback) {
+  d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json")
+    .then(world => {
+      svg.append("path")
+        .datum(topojson.feature(world, world.objects.countries))
+        .attr("d", path)
+        .attr("fill", "#f5f5f5")
+        .attr("stroke", "#bbb")
+        .attr("stroke-width", 0.3);
+      if (callback) callback();
+    });
+}
 
 
 // --- Visualization 2: Latinx Atlanta (28-county MSA) ---

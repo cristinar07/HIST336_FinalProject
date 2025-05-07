@@ -570,3 +570,24 @@
   height: 350px;
   position: relative;
 }
+
+
+/* Tooltip for arcs */
+.tooltip {
+  position: absolute;
+  pointer-events: none;
+  background: rgba(0,0,0,0.75);
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  opacity: 0;
+  transition: opacity 0.2s;
+  z-index: 10;
+}
+
+/* origin dots */
+.origin-point {
+  stroke: #333;
+  stroke-width: 0.5;
+}
