@@ -315,3 +315,258 @@
   color: #666;
   font-style: italic;
 }
+
+
+/* --- Visualization 1: Los Caminos Styles --- */
+
+#verse2 .viz-header {
+  text-align: center;
+  margin: 0 auto 1rem;
+  max-width: 800px;
+}
+#verse2 .viz-header h2 {
+  font-size: 2rem;
+  margin: 0.5rem 0;
+}
+#verse2 .viz-header p.viz-description {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.4;
+}
+
+/* Map container: explicit height so clientHeight > 0 */
+#verse2 #los-caminos {
+  position: relative;
+  width: 100%;
+  height: 500px;        /* pick a height that fits your slide */
+  background: #fff;     /* white bg so land fill contrasts */
+}
+
+/* SVG takes full size of its container */
+#verse2 #los-caminos svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Land outline styling */
+#verse2 #los-caminos path {
+  fill: #f0f0f0;        /* light grey land */
+  stroke: #999;         /* subtle border */
+  stroke-width: 0.5px;
+}
+
+/* Migration arcs */
+#verse2 .arc {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2px;
+  opacity: 0.7;
+}
+
+/* Slider + play button container */
+#verse2 .slider-container {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(255,255,255,0.8);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+}
+
+/* Year slider */
+#verse2 #year-slider {
+  width: 200px;
+}
+
+/* Play/pause button */
+#verse2 #play-pause {
+  padding: 0.3rem 0.6rem;
+  border: 1px solid #666;
+  background: #fff;
+  cursor: pointer;
+  border-radius: 3px;
+}
+#verse2 #play-pause:focus {
+  outline: none;
+}
+
+/* --- Visualization 2: Latinx Atlanta Styles (Metro only) --- */
+#verse3 .viz-header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+#verse3 .viz-header h2 {
+  font-size: 1.8rem;
+  margin: 0.5rem 0;
+}
+#verse3 .viz-header p.viz-description {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* container */
+#verse3 #latinx-atlanta {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* controls */
+#verse3 .controls {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+}
+#verse3 .controls label {
+  font-size: 0.9rem;
+  color: #333;
+}
+
+/* map */
+/* Verse 3: Latinx Atlanta (Metro only) */
+
+#verse3 #map2 {
+  width: 120%;        /* make it wider */
+  height: 70vh;      /* taller */
+  display: block;
+  margin: 0 auto;    /* center */
+  border: 1px solid #ddd;
+  background: #f9f9f9;
+}
+
+
+/* county fill */
+#verse3 .county {
+  stroke: #fff;
+  stroke-width: 0.5;
+}
+
+/* legend */
+#verse3 #legend2 {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+#verse3 .legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.8rem;
+}
+#verse3 .legend-swatch {
+  width: 20px;
+  height: 12px;
+}
+
+
+/* --- Viz 3: Working Atlanta Styles --- */
+#verse4 .viz-header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+#verse4 .viz-header h2 {
+  font-size: 1.8rem;
+  margin: 0.5rem 0;
+}
+#verse4 .viz-header p.viz-description {
+  font-size: 1rem;
+  color: #555;
+}
+
+#verse4 #working-atlanta {
+  max-width: 800px;
+  margin: 0 auto 2rem;
+}
+
+#verse4 #vis-working-atlanta {
+  width: 100%;
+  height: 450px;   /* tweak as you like */
+}
+
+#verse4 .legend-working {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  font-size: 0.9rem;
+}
+#verse4 .legend-swatch {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  margin-right: 0.25rem;
+  vertical-align: middle;
+}
+#verse4 .axis text {
+  font-size: 0.8rem;
+}
+
+/* Verse 5: Speaking Across Borders */
+
+#verse5 .viz-header {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+#verse5 .viz-header h2 {
+  font-size: 1.8rem;
+  margin: 0.25rem 0;
+}
+#verse5 .viz-header .viz-description {
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+}
+
+/* age-group control, slightly separated */
+#verse5 .controls {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+#verse5 .controls select {
+  padding: 0.2em 0.5em;
+  font-size: 0.9rem;
+}
+
+/* flex layout for the two charts */
+#verse5 .chart-container {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  gap: 2%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* each chart’s box */
+#verse5 .chart-box {
+  width: 48%;
+  background: #fafafa;
+  border: 1px solid #e0e0e0;
+  padding: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+#verse5 .chart-box h3 {
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+  text-align: center;
+}
+#verse5 .chart-caption {
+  display: block;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+/* containers for the D3 visuals */
+#pie-language,
+#dotmap-proficiency {
+  width: 100%;
+  height: 350px;
+  position: relative;
+}

@@ -41,51 +41,152 @@
     </section>
 
     <!-- Verse 2 -->
-    <section class="full-slide content-slide" id="verse2">
+    <!-- <section class="full-slide content-slide" id="verse2">
       <div class="poem-box">
         <p>Slide 2 Placeholder</p>
       </div>
       <div class="visual-box">
         <svg id="vis2" width="960" height="600"></svg>
       </div>
-    </section>
+    </section> -->
+        <!-- Verse 2: Los Caminos -->
+        <section class="full-slide content-slide" id="verse2">
+          <div class="viz-header">
+            <h2>Los Caminos: Migration Pathways & Timeline</h2>
+            <p class="viz-description">
+              Animated flow map showing where Latinx migrants to Atlanta come from and when they arrived.
+             Use the ▶️ button or the slider below to animate arrivals by decade.
+             Use the ▶️ button or the slider below to animate arrivals by year.
+            </p>
+          </div>
+      
+          <div id="los-caminos">
+            <svg id="map"></svg>
+            <div class="slider-container">
+              <button id="play-pause">▶️</button>
+              <input type="range" id="year-slider" min="2009" max="2023" step="1" value="2009">
+              <span id="year-label">2009</span>
+              
+            </div>
+          </div>
+        </section>
+      
+
 
     <!-- Verse 3 -->
-    <section class="full-slide content-slide" id="verse3">
-      <div class="poem-box">
-        <p>Slide 3 Placeholder</p>
-      </div>
-      <div class="visual-box">
-        <svg id="vis3" width="960" height="600"></svg>
-      </div>
-    </section>
+      <!-- Verse 3: Latinx Atlanta -->
+  <section class="full-slide content-slide" id="verse3">
+    <div class="viz-header">
+      <h2>Latinx Atlanta: Neighborhood Demographics &amp; Spatial Distribution</h2>
+      <p class="viz-description">
+        Percentage Latinx population by county across Metro Atlanta. Filter by country of origin to see how concentrations shift.
+      </p>
+    </div>
 
-    <!-- Verse 4 -->
-    <section class="full-slide transition-slide" id="verse4">
-      <div class="poem-box transition">
-        <p>Slide 4 Placeholder (Transition)</p>
+    <div id="latinx-atlanta">
+      <div class="controls">
+        <label>
+          Origin:
+          <select id="origin-filter">
+            <option value="all">All Origins</option>
+            <option value="mexico">Mexican</option>
+            <option value="salvadoran">Salvadoran</option>
+            <option value="guatemalan">Guatemalan</option>
+            <option value="colombian">Colombian</option>
+          </select>
+        </label>
       </div>
-    </section>
+      <svg id="map2"></svg>
+      <div id="legend2"></div>
+    </div>
+  </section>
 
-    <!-- Verse 5 -->
-    <section class="full-slide content-slide" id="verse5">
-      <div class="poem-box">
-        <p>Slide 5 Placeholder</p>
-      </div>
-      <div class="visual-box">
-        <svg id="vis5" width="960" height="600"></svg>
-      </div>
-    </section>
+      <!-- Verse 4: Working Atlanta -->
+  <section class="full-slide content-slide" id="verse5">
+    <div class="viz-header">
+      <h2>Working Atlanta: Latinx Labor in the City</h2>
+      <p class="viz-description">
+        Stacked bars show the number of Latinx workers in key industries, split by foreign-born vs. U.S.-born.
+      </p>
+    </div>
+
+    <div id="working-atlanta">
+      <svg id="vis-working-atlanta"></svg>
+      <div id="legend-working"></div>
+    </div>
+  </section>
+
 
     <!-- Verse 6 -->
-    <section class="full-slide content-slide" id="verse6">
-      <div class="poem-box">
-        <p>Slide 6 Placeholder</p>
+    <!-- Verse 5: Speaking Across Borders -->
+    <section class="full-slide content-slide" id="verse5">
+      <div class="viz-header">
+        <h2>Speaking Across Borders: Language, Identity, & Access</h2>
+        <p class="viz-description">
+          Pie chart shows share of primary languages spoken at home. Dot-density map shows households with limited English proficiency. Use the age-group selector to update both.
+        </p>
       </div>
-      <div class="visual-box">
-        <svg id="vis6" width="960" height="600"></svg>
+  
+      <div class="controls">
+        <label>
+          Age group:
+          <select id="age-group">
+            <option value="all">All Ages</option>
+            <option value="under18">Under 18</option>
+            <option value="18to34">18–34</option>
+            <option value="35to64">35–64</option>
+            <option value="65plus">65+</option>
+          </select>
+        </label>
+      </div>
+  
+      <div class="chart-container">
+        <div class="chart-box">
+          <h3>Primary Language at Home</h3>
+          <div id="pie-language"></div>
+        </div>
+        <div class="chart-box">
+          <h3>Limited-English Proficiency Households</h3>
+          <small class="chart-caption">Each dot = 10 households</small>
+          <div id="dotmap-proficiency"></div>
+        </div>
       </div>
     </section>
+  <!-- Verse 5: Speaking Across Borders -->
+  <section class="full-slide content-slide" id="verse5">
+    <div class="viz-header">
+      <h2>Speaking Across Borders: Language, Identity, & Access</h2>
+      <p class="viz-description">
+        Pie chart shows share of primary languages spoken at home. Dot-density map shows households with limited English proficiency. Use the age-group selector to update both.
+      </p>
+    </div>
+
+    <div class="controls">
+      <label>
+        Age group:
+        <select id="age-group">
+          <option value="all">All Ages</option>
+          <option value="under18">Under 18</option>
+          <option value="18to34">18–34</option>
+          <option value="35to64">35–64</option>
+          <option value="65plus">65+</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="chart-container">
+      <div class="chart-box">
+        <h3>Primary Language at Home</h3>
+        <div id="pie-language"></div>
+      </div>
+      <div class="chart-box">
+        <h3>Limited-English Proficiency Households</h3>
+        <small class="chart-caption">Each dot = 10 households</small>
+        <div id="dotmap-proficiency"></div>
+      </div>
+    </div>
+  </section>
+  
 
     <!-- Verse 7 -->
     <section class="full-slide content-slide" id="verse7">
@@ -167,9 +268,8 @@
       <div class="timeline-node" data-slide="2">I</div>
       <div class="timeline-node" data-slide="3">1</div>
       <div class="timeline-node" data-slide="4">2</div>
-      <div class="timeline-node" data-slide="5">3</div>
-      <div class="timeline-node" data-slide="6">4</div>
-      <div class="timeline-node" data-slide="7">5</div>
+      <div class="timeline-node" data-slide="6">3</div>
+      <div class="timeline-node" data-slide="7">4</div>
       <div class="timeline-node" data-slide="8">⛶</div>
       <div class="timeline-node" data-slide="9">C</div>
     </div>
